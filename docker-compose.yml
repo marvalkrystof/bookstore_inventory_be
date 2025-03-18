@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: bookstore_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: book_store_information
+    ports:
+      - "5432:5432"
+    volumes:
+    - ./full_dump.sql:/docker-entrypoint-initdb.d/full_dump.sql
