@@ -188,6 +188,36 @@
 			"response": []
 		},
 		{
+			"name": "Delete Genres",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZWZhdWx0X3VzZXIiLCJpYXQiOjE3NDE4OTQxNjUsImV4cCI6MTc0MTkzMDE2NX0.4c4zLvUdamV0hSDkh872-fYx7hNYzUlHFvOLdN7pPeg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/books/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Author",
 			"request": {
 				"auth": {
@@ -264,7 +294,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl91c2VyIiwiaWF0IjoxNzQyMTcyNzU1LCJleHAiOjE3NDIyMDg3NTV9.ZU02WpmFQxsqlWSYPSjGi7s2PhiSyJNVQPR-9OUQtwI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl91c2VyIiwiaWF0IjoxNzQyMzI3MDMwLCJleHAiOjE3NDIzNjMwMzB9.wUIvvmv0E2-T1dFEIpB6HeUCAOkC0W-ouugWGkMXK74",
 							"type": "string"
 						}
 					]
@@ -272,7 +302,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/books/search?title=harry&author=rowling&genre=fantasy&page=0&size=10",
+					"raw": "localhost:8080/api/books/search?author=J.K&genre=fantasy&title=Harry&page=0&size=10",
 					"host": [
 						"localhost"
 					],
@@ -284,16 +314,16 @@
 					],
 					"query": [
 						{
-							"key": "title",
-							"value": "harry"
-						},
-						{
 							"key": "author",
-							"value": "rowling"
+							"value": "J.K"
 						},
 						{
 							"key": "genre",
 							"value": "fantasy"
+						},
+						{
+							"key": "title",
+							"value": "Harry"
 						},
 						{
 							"key": "page",
