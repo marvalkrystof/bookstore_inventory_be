@@ -168,4 +168,17 @@ public class RestExceptionHandler {
         errorMessage.addErrorMessage(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
+
+    /**
+     * Handles general IllegalArgumentExceptions thrown by the application.
+     *
+     * @param ex The thrown exception.
+     * @return ResponseEntity with BAD_REQUEST status and error details.
+     */
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorMessage> handleIllegalArgumentException(IllegalArgumentException ex) {
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST);
+        errorMessage.addErrorMessage(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
 }
