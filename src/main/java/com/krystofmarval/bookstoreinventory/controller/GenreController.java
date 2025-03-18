@@ -41,7 +41,7 @@ import java.util.Optional;
  * @since 1.0
  */
 @RestController
-@RequestMapping("/api/genres")
+@RequestMapping(value = "/api/genres", produces = "application/json")
 public class GenreController {
 
     /**

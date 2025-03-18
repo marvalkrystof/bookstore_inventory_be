@@ -42,7 +42,7 @@ import java.util.Collections;
  * @since 1.0
  */
 @RestController
-@RequestMapping("/books")
+@RequestMapping(value = "/api/books", produces = "application/json")
 public class BookController {
 
     /**
@@ -130,6 +130,35 @@ public class BookController {
         bookService.deleteBook(id);
         ApiMessage response = new ApiMessage(HttpStatus.OK);
         response.addMessage("Book with id " + id + " deleted successfully");
+        return ResponseEntity.ok(response);
+    }
+
+
+    /**
+     * Searches for books based on title, author, and/or genre.
+     *
+     * @param title  Optional book title to search for.
+     * @param author Optional author name to search for.
+     * @param genre  Optional genre name to search for.
+     * @param page   Page number for pagination (default is 0).
+     * @param size   Page size for pagination (default is 10).
+     * @return A ResponseEntity containing a paginated list of books.
+     */
+    @GetMapping("/search")
+    public ResponseEntity<ApiMessage> searchBooks(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) String genre,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Book> booksPage = bookService.searchBooks(title, author, genre, pageable);
+        ApiMessage response = new PaginatedDataApiMessage<>(HttpStatus.OK, booksPage);
+        response.addMetadata("search_title", title);
+        response.addMetadata("search_author", author);
+        response.addMetadata("search_genre", genre);
+        response.addMessage("Search executed successfully");
         return ResponseEntity.ok(response);
     }
 }
